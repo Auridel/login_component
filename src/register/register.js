@@ -39,7 +39,10 @@ const Register = () => {
                 className="login__icon"
                 fontSize="large"
                 color="primary"/>
-            <form className="register__form"  autoComplete="off">
+            <form
+                onSubmit={(e) => e.preventDefault()}
+                className="register__form"
+                autoComplete="off">
                 <TextField
                            label="E-mail"
                            inputRef={emailRef}

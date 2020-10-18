@@ -13,7 +13,10 @@ const Login = () => {
                 className="login__icon"
                 fontSize="large"
                 color="primary"/>
-            <form className="login__form"  autoComplete="off">
+            <form
+                onSubmit={(e) => e.preventDefault()}
+                className="login__form"
+                autoComplete="off">
                 <TextField autoComplete="email"
                            label="E-mail"
                            type="email"
@@ -32,7 +35,6 @@ const Login = () => {
                            type="password"
                            className="login__input"
                            name="password"
-                           // error="Enter correct password"
                 />
                 <a className="login__forgot" href="" alt="password recovery">Forgot password?</a>
 

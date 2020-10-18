@@ -21,7 +21,6 @@ const TabComponent = () => {
                 indicatorColor="primary"
                 textColor="primary"
                 centered
-                // variant="fullWidth"
             >
                 <Tab
                     onClick={() => history.push("/")}
