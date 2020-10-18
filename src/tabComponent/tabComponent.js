@@ -1,5 +1,5 @@
-import React from "react";
-import {Link} from "react-router-dom";
+import React, {useEffect} from "react";
+import {useHistory, useLocation} from "react-router-dom";
 import {Paper, Tab, Tabs} from "@material-ui/core";
 
 const TabComponent = () => {
@@ -7,6 +7,11 @@ const TabComponent = () => {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+    const history = useHistory();
+    const location = useLocation();
+    useEffect(() => {
+        if(location.pathname === "/register") setValue(1);
+    })
 
     return (
         <Paper>
@@ -16,10 +21,14 @@ const TabComponent = () => {
                 indicatorColor="primary"
                 textColor="primary"
                 centered
-                variant="fullWidth"
+                // variant="fullWidth"
             >
-                <Link to="/"><Tab label="Login" /></Link>
-                <Link to="/register"><Tab label="Register" /></Link>
+                <Tab
+                    onClick={() => history.push("/")}
+                    label="Login" />
+                <Tab
+                    onClick={() => history.push("/register")}
+                    label="Register" />
             </Tabs>
         </Paper>
     );

@@ -2,6 +2,7 @@
     max-width: 330px;
     min-height: 550px;
     border: 1px solid #597e99;
+    overflow: hidden;
 }
 .test{
     display: flex;

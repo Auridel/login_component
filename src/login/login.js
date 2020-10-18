@@ -1,9 +1,12 @@
-import React from "react";
+import React, {useState, useRef} from "react";
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import {TextField, Button} from "@material-ui/core";
+import {checkEmail} from "../utils";
 import "./login.css";
 
 const Login = () => {
+    const [error, setError] = useState(false);
+    const emailRef = useRef();
     return (
         <>
             <LockOpenIcon
@@ -16,7 +19,13 @@ const Login = () => {
                            type="email"
                            className="login__input"
                            name="email"
-                           // error="Enter correct email"
+                           error={error? true : false}
+                           helperText={error}
+                           inputRef={emailRef}
+                           onBlur={() => {
+                               if(!checkEmail(emailRef.current.value)) setError("Enter correct email");
+                               else setError(false);
+                           }}
                 />
                 <TextField
                            label="Password"
