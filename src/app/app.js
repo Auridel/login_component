@@ -1,12 +1,15 @@
 import React from "react";
-import {Tabs, Tab} from "react-materialize";
+import TabComponent from "../tabs/tabs";
+import "./app.css";
+import Login from "../login/login";
 
 const App = () => {
-    return (
-        <div className="auth-component">
-
-        </div>
-    )
+   return (
+       <section className="login-comp">
+           <TabComponent/>
+           <Login/>
+       </section>
+   )
 };
 
 export default App;
