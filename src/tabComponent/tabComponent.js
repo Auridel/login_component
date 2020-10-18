@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import {Paper, Tab, Tabs} from "@material-ui/core";
 
 const TabComponent = () => {
@@ -17,8 +18,8 @@ const TabComponent = () => {
                 centered
                 variant="fullWidth"
             >
-                <Tab label="Login" />
-                <Tab label="Register" />
+                <Link to="/"><Tab label="Login" /></Link>
+                <Link to="/register"><Tab label="Register" /></Link>
             </Tabs>
         </Paper>
     );
