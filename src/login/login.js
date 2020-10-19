@@ -5,8 +5,23 @@ import {checkEmail} from "../utils";
 import "./login.css";
 
 const Login = () => {
-    const [error, setError] = useState(false);
+    const [errors, setErrors] = useState({
+        email: false,
+        pass: false
+    });
     const emailRef = useRef();
+    const passRef = useRef();
+    const onError = (msg, key) => {
+        const newErr = Object.assign({}, errors);
+        newErr[key] = msg;
+        setErrors(newErr);
+    }
+    const onSubmit = (e) => {
+        if(!emailRef.current.value || !passRef.current.value || errors.email || errors.pass){
+            e.preventDefault();
+        }
+    }
+
     return (
         <>
             <LockOpenIcon
@@ -14,7 +29,8 @@ const Login = () => {
                 fontSize="large"
                 color="primary"/>
             <form
-                onSubmit={(e) => e.preventDefault()}
+                method="POST"
+                onSubmit={onSubmit}
                 className="login__form"
                 autoComplete="off">
                 <TextField autoComplete="email"
@@ -22,12 +38,12 @@ const Login = () => {
                            type="email"
                            className="login__input"
                            name="email"
-                           error={error? true : false}
-                           helperText={error}
+                           error={errors.email? true : false}
+                           helperText={errors.email}
                            inputRef={emailRef}
                            onBlur={() => {
-                               if(!checkEmail(emailRef.current.value)) setError("Enter correct email");
-                               else setError(false);
+                               if(!checkEmail(emailRef.current.value)) onError("Enter correct email", "email");
+                               else onError(false, "email");
                            }}
                 />
                 <TextField
@@ -35,6 +51,13 @@ const Login = () => {
                            type="password"
                            className="login__input"
                            name="password"
+                           inputRef={passRef}
+                           onBlur={() => {
+                               if(!passRef.current.value) onError("Enter correct password", "pass");
+                               else onError(false, "pass");
+                           }}
+                           error={errors.pass? true : false}
+                           helperText={errors.pass}
                 />
                 <a className="login__forgot" href="" alt="password recovery">Forgot password?</a>
 

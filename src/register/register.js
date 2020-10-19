@@ -31,6 +31,11 @@ const Register = () => {
             if(!errors.pass) setErrors(newErr);
         }
     }
+    const onSubmit = (e) => {
+        if(!passRef.current.value || !confirmRef.current.value || phoneRef.current.value.replace(/[^0-9]/g, "").length <11 || !emailRef.current.value  || errors.email || errors.pass){
+            e.preventDefault();
+        }
+    }
 
 
     return (
@@ -40,7 +45,8 @@ const Register = () => {
                 fontSize="large"
                 color="primary"/>
             <form
-                onSubmit={(e) => e.preventDefault()}
+                method="POST"
+                onSubmit={onSubmit}
                 className="register__form"
                 autoComplete="off">
                 <TextField
